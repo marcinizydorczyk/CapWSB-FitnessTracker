@@ -1,0 +1,1 @@
+Nie pushować z terminalu !!!
