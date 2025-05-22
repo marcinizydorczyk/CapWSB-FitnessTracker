@@ -1,7 +1,12 @@
 package pl.wsb.fitnesstracker.user.internal;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.wsb.fitnesstracker.user.api.UserDto;
+import pl.wsb.fitnesstracker.user.api.UserEmailDto;
+import pl.wsb.fitnesstracker.user.api.UserSimpleDto;
+
 
 import java.util.List;
 
@@ -21,15 +26,30 @@ class UserController {
                 .map(userMapper::toDto)
                 .toList();
     }
+    @GetMapping("/simple")
+    public ResponseEntity<List<UserSimpleDto>> getAllSimpleUsers() {
+        return ResponseEntity.ok(userService.getAllSimpleUsers());
+    }
 
     @PostMapping
-    public UserDto addUser(@RequestBody UserDto userDto) throws InterruptedException {
+    public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) {
+        var user = userService.createUser(userMapper.toEntity(userDto));
+        return ResponseEntity.status(201).body(userMapper.toDto(user));
+    }
 
-        // TODO: Implement the method to add a new user.
-        //  You can use the @RequestBody annotation to map the request body to the UserDto object.
-
-
-        return null;
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+        userService.deleteUser(userId);
+        return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/email")
+    public ResponseEntity<List<UserEmailDto>> getUsersByEmail(@RequestParam String email) {
+        return ResponseEntity.ok(userService.findByEmailContainingIgnoreCase(email));
+    }
+    @PutMapping("/{userId}")
+    public ResponseEntity<Void> updateUser(@PathVariable Long userId, @RequestBody UserDto dto) {
+        userService.updateUser(userId, dto);
+        return ResponseEntity.noContent().build();
     }
 
 }

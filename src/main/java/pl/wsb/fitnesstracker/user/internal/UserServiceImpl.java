@@ -3,12 +3,12 @@ package pl.wsb.fitnesstracker.user.internal;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pl.wsb.fitnesstracker.user.api.User;
-import pl.wsb.fitnesstracker.user.api.UserProvider;
-import pl.wsb.fitnesstracker.user.api.UserService;
+import pl.wsb.fitnesstracker.user.api.*;
+import pl.wsb.fitnesstracker.user.api.UserDto;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +16,7 @@ import java.util.Optional;
 class UserServiceImpl implements UserService, UserProvider {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Override
     public User createUser(final User user) {
@@ -40,5 +41,46 @@ class UserServiceImpl implements UserService, UserProvider {
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public List<UserListDto> getAllUserList() {
+        return userRepository.findAll().stream()
+                .map(userMapper::toListDto)
+                .collect(Collectors.toList());
+    }
+    @Override
+    public List<UserSimpleDto> getAllSimpleUsers() {
+        return userRepository.findAll().stream()
+                .map(userMapper::toSimpleDto)
+                .toList();
+    }
+    @Override
+    public List<UserEmailDto> findByEmailContaining(String email) {
+        return userRepository.findAll().stream()
+                .filter(user -> user.getEmail().toLowerCase().contains(email.toLowerCase()))
+                .map(userMapper::toEmailDto)
+                .toList();
+    }
+    @Override
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
+    }
+    @Override
+    public List<UserEmailDto> findByEmailContainingIgnoreCase(String fragment) {
+        return userRepository.findAll().stream()
+                .filter(user -> user.getEmail().toLowerCase().contains(fragment.toLowerCase()))
+                .map(userMapper::toEmailDto)
+                .toList();
+    }
+    @Override
+    public void updateUser(Long id, UserDto dto) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        user.updateFrom(dto); // metoda, którą zaraz dodamy
+        userRepository.save(user);
+    }
+
+
 
 }

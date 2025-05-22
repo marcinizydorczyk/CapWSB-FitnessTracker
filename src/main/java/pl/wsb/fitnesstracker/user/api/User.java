@@ -44,6 +44,12 @@ public class User {
         this.birthdate = birthdate;
         this.email = email;
     }
+    public void updateFrom(UserDto dto) {
+        this.firstName = dto.firstName();
+        this.lastName = dto.lastName();
+        this.birthdate = dto.birthdate();
+        this.email = dto.email();
+    }
 
 }
 
