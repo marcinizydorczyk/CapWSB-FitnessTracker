@@ -8,6 +8,7 @@ import pl.wsb.fitnesstracker.user.api.UserEmailDto;
 import pl.wsb.fitnesstracker.user.api.UserSimpleDto;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -19,6 +20,7 @@ class UserController {
 
     private final UserMapper userMapper;
 
+
     @GetMapping
     public List<UserDto> getAllUsers() {
         return userService.findAllUsers()
@@ -26,6 +28,8 @@ class UserController {
                 .map(userMapper::toDto)
                 .toList();
     }
+
+
     @GetMapping("/simple")
     public ResponseEntity<List<UserSimpleDto>> getAllSimpleUsers() {
         return ResponseEntity.ok(userService.getAllSimpleUsers());
@@ -50,6 +54,22 @@ class UserController {
     public ResponseEntity<Void> updateUser(@PathVariable Long userId, @RequestBody UserDto dto) {
         userService.updateUser(userId, dto);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/older/{date}")
+    public ResponseEntity<List<UserDto>> getUsersOlderThan(@PathVariable LocalDate date) {
+        List<UserDto> users = userService.findUsersBornBefore(date)
+                .stream()
+                .map(userMapper::toDto)
+                .toList();
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
+        return userService.getUser(id)
+                .map(userMapper::toDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }

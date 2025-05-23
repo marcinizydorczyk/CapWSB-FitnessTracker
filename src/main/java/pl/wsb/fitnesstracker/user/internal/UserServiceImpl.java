@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.wsb.fitnesstracker.user.api.*;
 import pl.wsb.fitnesstracker.user.api.UserDto;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -65,6 +66,8 @@ class UserServiceImpl implements UserService, UserProvider {
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
+
+
     @Override
     public List<UserEmailDto> findByEmailContainingIgnoreCase(String fragment) {
         return userRepository.findAll().stream()
@@ -77,9 +80,13 @@ class UserServiceImpl implements UserService, UserProvider {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        user.updateFrom(dto); // metoda, którą zaraz dodamy
+        user.updateFrom(dto);
         userRepository.save(user);
     }
+    public List<User> findUsersBornBefore(LocalDate date) {
+        return userRepository.findAllByBirthdateBefore(date);
+    }
+
 
 
 
