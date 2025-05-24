@@ -21,6 +21,12 @@ interface UserRepository extends JpaRepository<User, Long> {
                 .filter(user -> Objects.equals(user.getEmail(), email))
                 .findFirst();
     }
+
+    /**
+     * Find user born before specific date
+     * @param date
+     * @return
+     */
     List<User> findAllByBirthdateBefore(LocalDate date);
 
 }
