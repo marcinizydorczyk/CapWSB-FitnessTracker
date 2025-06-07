@@ -55,4 +55,25 @@ public class Training {
         this.distance = distance;
         this.averageSpeed = averageSpeed;
     }
+    // === Gettery i settery ===
+
+    public void setDistance(Double distance) {
+        this.distance = distance;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setActivityType(ActivityType activityType) {
+        this.activityType = activityType;
+    }
+
+    public void setAverageSpeed(Double averageSpeed) {
+        this.averageSpeed = averageSpeed;
+    }
 }
