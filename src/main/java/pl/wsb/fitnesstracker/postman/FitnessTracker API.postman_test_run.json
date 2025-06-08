@@ -1,0 +1,198 @@
+{
+	"id": "4baff7a5-9afd-40d9-990c-5d7fb8d7b642",
+	"name": "FitnessTracker API",
+	"timestamp": "2025-05-25T09:26:27.605Z",
+	"collection_id": "25949724-a045433c-3644-4a22-98a7-d5f084a4e83d",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-05-25T09:26:26.044Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "7c24693f-bdc3-4fa1-a1a8-30363a5a3463",
+			"name": "Create User",
+			"url": "http://localhost:8081/v1/users",
+			"time": 421,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				421
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f8963c82-bb3a-4ac0-8da9-ac7b2d6b5de4",
+			"name": "Get all users",
+			"url": "http://localhost:8081/v1/users",
+			"time": 185,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				185
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "8f56a56c-8e80-4dc2-b9a4-16c559ad6893",
+			"name": "Get simple users",
+			"url": "http://localhost:8081/v1/users/simple",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4ec76302-8de3-4aac-93e3-63781929ddc2",
+			"name": "user information by id",
+			"url": "http://localhost:8081/v1/users/1",
+			"time": 29,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				29
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e66b1763-4ca7-4522-aa89-c1f8c40a659b",
+			"name": "Get by full email",
+			"url": "http://localhost:8081/v1/users/email?email=kacper-prusak370@wp.pl",
+			"time": 22,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				22
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a2b5a3ec-766e-43e7-850d-ca66155f5eb0",
+			"name": "Get users born before date",
+			"url": "http://localhost:8081/v1/users/older/2000-01-01",
+			"time": 46,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				46
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2900e3ab-dc3c-4bc9-b58b-0844fc328735",
+			"name": "Update user",
+			"url": "http://localhost:8081/v1/users/1",
+			"time": 42,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				42
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "65b0249b-7348-49ef-993b-a8499258a82f",
+			"name": "Delete User",
+			"url": "http://localhost:8081/v1/users/1",
+			"time": 21,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				21
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 779,
+	"collection": {
+		"requests": [
+			{
+				"id": "7c24693f-bdc3-4fa1-a1a8-30363a5a3463",
+				"method": "POST"
+			},
+			{
+				"id": "f8963c82-bb3a-4ac0-8da9-ac7b2d6b5de4",
+				"method": "GET"
+			},
+			{
+				"id": "8f56a56c-8e80-4dc2-b9a4-16c559ad6893",
+				"method": "GET"
+			},
+			{
+				"id": "4ec76302-8de3-4aac-93e3-63781929ddc2",
+				"method": "GET"
+			},
+			{
+				"id": "e66b1763-4ca7-4522-aa89-c1f8c40a659b",
+				"method": "GET"
+			},
+			{
+				"id": "a2b5a3ec-766e-43e7-850d-ca66155f5eb0",
+				"method": "GET"
+			},
+			{
+				"id": "2900e3ab-dc3c-4bc9-b58b-0844fc328735",
+				"method": "PUT"
+			},
+			{
+				"id": "65b0249b-7348-49ef-993b-a8499258a82f",
+				"method": "DELETE"
+			}
+		]
+	}
+}
