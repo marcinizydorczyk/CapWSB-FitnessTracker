@@ -10,6 +10,10 @@ import pl.wsb.fitnesstracker.user.api.User;
 
 import java.util.Date;
 
+/**
+ * Reprezentuje pojedynczy trening wykonany przez użytkownika.
+ * Zawiera informacje takie jak czas trwania, typ aktywności, dystans i prędkość.
+ */
 @Entity
 @Table(name = "trainings")
 @Getter
@@ -17,27 +21,48 @@ import java.util.Date;
 @ToString
 public class Training {
 
+    /**
+     * Unikalny identyfikator treningu.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * Użytkownik, do którego należy trening.
+     */
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**
+     * Data i godzina rozpoczęcia treningu.
+     */
     @Column(name = "start_time", nullable = false)
     private Date startTime;
 
+    /**
+     * Data i godzina zakończenia treningu.
+     */
     @Column(name = "end_time", nullable = false)
     private Date endTime;
 
+    /**
+     * Typ aktywności (np. bieganie, jazda na rowerze).
+     */
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "activity_type", nullable = false)
     private ActivityType activityType;
 
+    /**
+     * Przebyty dystans w kilometrach.
+     */
     @Column(name = "distance")
     private double distance;
 
+    /**
+     * Średnia prędkość w trakcie treningu.
+     */
     @Column(name = "average_speed")
     private double averageSpeed;
 

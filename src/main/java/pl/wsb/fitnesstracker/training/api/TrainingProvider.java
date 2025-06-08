@@ -1,7 +1,5 @@
 package pl.wsb.fitnesstracker.training.api;
 
-import pl.wsb.fitnesstracker.user.api.User;
-
 import java.util.Optional;
 
 public interface TrainingProvider {

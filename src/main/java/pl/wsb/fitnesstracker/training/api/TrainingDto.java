@@ -5,6 +5,10 @@ import pl.wsb.fitnesstracker.training.internal.ActivityType;
 
 import java.util.Date;
 
+/**
+ * Obiekt DTO (Data Transfer Object) reprezentujący trening użytkownika.
+ * Używany do przesyłania danych między warstwami aplikacji.
+ */
 @Data
 public class TrainingDto {
     private Long id;
