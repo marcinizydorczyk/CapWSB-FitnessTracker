@@ -8,6 +8,7 @@ import lombok.ToString;
 import pl.wsb.fitnesstracker.training.internal.ActivityType;
 import pl.wsb.fitnesstracker.user.api.User;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
